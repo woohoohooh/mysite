@@ -1,0 +1,15 @@
+{% extends 'blog/base.html' %}
+{% load humanize %}
+
+{% block content %}
+<h1>{% if bb == "plus" %}Прибавить USDT по продукту {{ aa }} от успешных дивидендов{% endif %}{% if bb == "minus" %}Отбавить USDT по продукту {{ aa }} от НЕ успешных дивидендов{% endif %}</h1><br>
+    <form method="POST" action="{% url 'percent_step4' %}">
+        {% csrf_token %}
+
+        <div>Последнее обновление дивидендов <b>{{ published_date }}</b></div>
+        <div>Текущий баланс юзеров <b>{{ balance_users|floatformat:"0"|intcomma }}</b> USDT и резервного фонда <b>{{ balance_reserve_fund|floatformat:"0"|intcomma }}</b> USDT</div><br><br><br>
+        <div><b>Сумма для {% if bb == "plus" %}добавления{% endif %}{% if bb == "minus" %}отбавления{% endif %}:</b> <input name="summ", value="1000"> <b>USDT</b> <i>(for example: <b>1000</b>)</i></div><br><br><br>
+        <div><b>Процент {% if bb == "plus" %}в резервный фонд{% endif %}{% if bb == "minus" %}от резервного фонда{% endif %}:</b> <input name="percent", value="20"> <b>%</b> <i>(for example: <b>10</b>)</i></div><br><br><br>
+        <div><input type="submit" value="CONTINUE"></div>
+    </form>
+{% endblock %}

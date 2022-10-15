@@ -1,0 +1,11 @@
+{% extends 'blog/base.html' %}
+{% load humanize %}
+
+{% block content %}
+<h1>Изменения успешно внесены по продукту {{ aa }}</h1><br>
+<table>
+<tr><td width="650" height="50"><big>Итоговые изменения баланса юзеров продукта.........................................</big></td> <td align="right"><big><b>{{ balance_users|floatformat:"0"|intcomma }}</b> USDT → {% if bb == "plus" %}<b>{{ summ5|floatformat:"0"|intcomma }}</b> USDT{% endif %}{% if bb == "minus" %}<b>{{ summ5|floatformat:"0"|intcomma }}</b> USDT{% endif %}</big></td></tr>
+<tr><td height="50"><big>Итоговые изменения баланса резервного фонда продукта.......................</big></td> <td align="right"><big><b>{{ balance_reserve_fund|floatformat:"0"|intcomma }}</b> USDT → {% if bb == "plus" %}<b>{{ summ6|floatformat:"0"|intcomma }}</b> USDT{% endif %}{% if bb == "minus" %}<b>{{ summ6|floatformat:"0"|intcomma }}</b> USDT{% endif %}</big></td></tr><br><br>
+<tr><td height="50"><big>Дата последнего обновления дивидендов...................................................</big></td> <td align="right"><big><b>{{ published_date }}</b></big></td></tr>
+</table>
+{% endblock %}

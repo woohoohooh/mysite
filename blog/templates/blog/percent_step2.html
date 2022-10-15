@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+{% load humanize %}
+
+{% block content %}
+<h1>Выюор типа распределения USDT по продукту {{ aa }}</h1><br>
+    <form method="POST" action="{% url 'percent_step3' %}">
+        {% csrf_token %}
+        <div>Последнее обновление дивидендов <b>{{ published_date }}</b></div>
+        <div>Текущий баланс юзеров <b>{{ balance_users|floatformat:"0"|intcomma }}</b> USDT и резервного фонда <b>{{ balance_reserve_fund|floatformat:"0"|intcomma }}</b> USDT</div><br><br><br>
+            <!-- Radio Buttons Start -->
+            <div>
+                <input type="radio" id="check-plus" name="plus_or_minus" value="plus" required checked>
+                <label for="check-plus"><b>ПРИБАВИТЬ</b> на баланс плюсовые дивиденды</label>
+            </div><br>
+            <div>
+                <input type="radio" id="check-minus" name="plus_or_minus" value="minus" required>
+                <label for="check-minus"><b>ОТБАВИТЬ</b> с баланса минусовые дивиденды</label>
+            </div><br><br><br>
+            <!-- Radio Buttons End -->
+        <div><input type="submit" value="CONTINUE"></div>
+    </form>
+{% endblock %}

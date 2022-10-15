@@ -1,0 +1,21 @@
+{% extends 'blog/base.html' %}
+{% load humanize %}
+
+{% block content %}
+<h1>Сделать переводы USDT между продуктом и кошельками {{ aa }}</h1><br>
+<table>
+<tr><td width="480" height="50"><b>Продукт</b>.............................................................................................</td> <td align="right">{{ aa }}</td></tr>
+<tr><td height="50">{% if ok %}<b>Сумма</b>....{% else %}Процент{% endif %}............................................................................................</td> <td align="right">{{ summ|floatformat:"0"|intcomma }} USDT</td></tr>
+<tr><td height="50"><b>Действие</b>...........................................................................................</td> <td align="right"><b>{{ txt }}</b></td></tr>
+{% if bb == "plus" %}<tr><td height="50"><b>Процент в резервный фонд</b>.......................................................... </td> <td align="right">{{ percent|intcomma }}%</td></tr>{% endif %}{% if bb == "minus" %}<tr><td height="50"><b>Процент от резервного фонда</b>...................................................... </td> <td align="right">{{ percent|intcomma }}%</td></tr>{% endif %}
+{% if bb == "plus" %}<tr><td height="50"><b>Сумма к зачислению юзерам</b>....................................................... </td> <td align="right">{{ summ2|floatformat:"0"|intcomma }} USDT</td></tr>{% endif %}{% if bb == "minus" %}<tr><td height="50"><b>Сумма к отбавлению у юзеров</b>..................................................... </td> <td align="right">{{ summ2|floatformat:"0"|intcomma }} USDT</td></tr>{% endif %}
+{% if bb == "plus" %}<tr><td height="50"><b>Сумма к зачислению в резервный фонд</b>....................................</td> <td align="right">{{ summ3|floatformat:"0"|intcomma }} USDT</td></tr>{% endif %}{% if bb == "minus" %}<tr><td height="50"><b>Сумма к отбавлению из резервного фонда</b>................................</td> <td align="right">{{ summ3|floatformat:"0"|intcomma }} USDT</td></tr>{% endif %}
+<tr><td height="50"><big>Изменения баланса юзеров продукта............................</big></td> <td align="right"><big><b>{{ balance_users|floatformat:"0"|intcomma }}</b> USDT → {% if bb == "plus" %}<b>{{ summ5|floatformat:"0"|intcomma }}</b> USDT{% endif %}{% if bb == "minus" %}<b>{{ summ5|floatformat:"0"|intcomma }}</b> USDT{% endif %}</big></td></tr>
+<tr><td height="50"><big>Изменения баланса резервного фонда продукта..........</big></td> <td align="right"><big><b>{{ balance_reserve_fund|floatformat:"0"|intcomma }}</b> USDT → {% if bb == "plus" %}<b>{{ summ6|floatformat:"0"|intcomma }}</b> USDT{% endif %}{% if bb == "minus" %}<b>{{ summ6|floatformat:"0"|intcomma }}</b> USDT{% endif %}</big></td></tr><br><br>
+</table>
+<br><br>
+<form method="POST" action="{% url 'percent_step5' %}">
+{% csrf_token %}
+<div><input type="submit" value="СОХРАНИТЬ ИЗМЕНЕНИЯ В БАЗЕ ДАННЫХ ПРОДУКТА {{ aa }}"></div>
+</form>
+{% endblock %}

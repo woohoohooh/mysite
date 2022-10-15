@@ -1,0 +1,13 @@
+{% extends 'blog/base.html' %}
+{% load humanize %}
+
+{% block content %}
+<h1>Распределение дивидендов</h1><br>
+    <form method="POST" action="{% url 'percent_step2' %}">
+        {% csrf_token %}
+        <div><b>Продукт:</b>
+            <select name="product">{% for i in posts %}<option value="{{ i.product }}">{{ i.product }}</option>{% endfor %}</select></div><br><br><br>
+        <div><input type="submit" value="CONTINUE"></div>
+    </form>
+</form>
+{% endblock %}

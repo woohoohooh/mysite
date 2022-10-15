@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body><big>
+<!-- <a href="{% url 'post_list' %}">At work</a> |
+<a href="{% url 'post_archive' %}">Archive</a> |
+<a href="{% url 'index' %}">Parsing</a> |-->
+<a href="{% url 'post_new' %}">{% if active %}<b>Добавить продукт</b>{% else %}Добавить продукт{% endif %}</a> |
+<a href="{% url 'percent_step1' %}">{% if active2 %}<b>Распределение дивидендов</b>{% else %}Распределение дивидендов{% endif %}</a></big>
+<hr>
+    <div class="content container">
+        <div class="row">
+            <div class="col-md-8">
+            {% block content %}
+            {% endblock %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
